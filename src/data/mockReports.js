@@ -1,0 +1,123 @@
+// Mock Incident Reports Data
+export const mockReports = [
+  {
+    id: 'RPT-2026-0041',
+    incidentId: 'INC-2026-0041',
+    title: 'Incident Report: Brute Force Attack and Data Exfiltration via VPN Compromise',
+    generatedAt: '2026-06-29T20:00:00Z',
+    severity: 'Critical',
+    status: 'Final',
+    analyst: 'Alice Chen',
+    reviewedBy: 'Bob Martinez',
+    executiveSummary: `On June 29, 2026, at approximately 16:30 UTC, a sophisticated brute force attack was launched against the organization's VPN gateway from a botnet of 47 IP addresses. The attack successfully compromised the account jdoe@corp.com at 18:23 UTC after 23,441 authentication attempts. 
+
+The attacker subsequently moved laterally to the internal HR database server and exfiltrated 12,847 employee records to an external TOR exit node. The incident was detected at 18:45 UTC by the AI-SOC intrusion detection system. Immediate containment actions were taken, including isolating DB-SERVER-02, blocking malicious IPs, and disabling the compromised account.
+
+This incident highlights critical gaps in MFA enforcement and account lockout policies that must be addressed immediately.`,
+    timeline: [
+      { time: '2026-06-29T16:30:00Z', event: 'Initial reconnaissance - port scan detected', severity: 'low' },
+      { time: '2026-06-29T17:36:00Z', event: 'Brute force attack commenced - credential stuffing', severity: 'high' },
+      { time: '2026-06-29T18:23:00Z', event: 'Successful VPN authentication - account compromised', severity: 'critical' },
+      { time: '2026-06-29T18:27:00Z', event: 'Lateral movement - RDP to DB-SERVER-02', severity: 'critical' },
+      { time: '2026-06-29T18:38:00Z', event: 'Data exfiltration - 12,847 HR records exported', severity: 'critical' },
+      { time: '2026-06-29T18:45:00Z', event: 'AI-SOC detection - ALERT-0032 generated', severity: 'info' },
+      { time: '2026-06-29T18:52:00Z', event: 'Analyst notified - incident response initiated', severity: 'info' },
+      { time: '2026-06-29T19:05:00Z', event: 'Compromised account disabled - active sessions revoked', severity: 'info' },
+      { time: '2026-06-29T19:15:00Z', event: 'DB-SERVER-02 isolated from network', severity: 'info' },
+      { time: '2026-06-29T19:30:00Z', event: '47 malicious IPs blocked at perimeter firewall', severity: 'info' },
+      { time: '2026-06-29T20:00:00Z', event: 'Incident report generated', severity: 'info' },
+    ],
+    affectedAssets: [
+      { asset: 'VPN Gateway', impact: 'Authentication bypass', severity: 'Critical' },
+      { asset: 'jdoe@corp.com Account', impact: 'Full compromise', severity: 'Critical' },
+      { asset: 'DB-SERVER-02', impact: 'Unauthorized access', severity: 'Critical' },
+      { asset: 'HR_EMPLOYEES Table', impact: '12,847 records exfiltrated', severity: 'Critical' },
+    ],
+    technicalDetails: {
+      attackVector: 'Network',
+      attackComplexity: 'Low',
+      privilegesRequired: 'None',
+      userInteraction: 'None',
+      scope: 'Changed',
+      confidentialityImpact: 'High',
+      integrityImpact: 'None',
+      availabilityImpact: 'None',
+      cvssScore: 8.6,
+      sourceIps: ['185.220.101.45', '185.220.101.46', '185.220.101.47'],
+      toolsUsed: ['Custom credential stuffing tool', 'RockYou2024 wordlist', 'TOR network'],
+    },
+    recommendations: [
+      'Enable MFA on all VPN and remote access services immediately',
+      'Reduce account lockout threshold to 5 attempts',
+      'Block TOR exit nodes at perimeter firewall',
+      'Implement SIEM correlation rules for credential stuffing patterns',
+      'Conduct organization-wide breach credential check against HIBP database',
+      'Notify affected employees of potential data exposure',
+      'Report to DPA under GDPR Article 33 within 72 hours',
+    ],
+    lessonsLearned: [
+      'MFA enforcement should be mandatory for all remote access - no exceptions',
+      'AI-SOC detection was effective - alert generated within 7 minutes of exfiltration start',
+      'Incident response time was good - containment within 45 minutes of detection',
+      'Need automated IP blocking based on threat intelligence feeds',
+    ],
+    iocList: [
+      { type: 'IP', value: '185.220.101.45', description: 'Primary exfiltration destination (TOR exit node)' },
+      { type: 'IP', value: '185.220.101.46', description: 'Brute force source IP' },
+      { type: 'Hash', value: 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', description: 'Credential stuffing tool hash' },
+      { type: 'Domain', value: 'exfil-c2.onion', description: 'C2 domain (TOR)' },
+    ],
+    dataBreachDetails: {
+      recordsAffected: 12847,
+      dataTypes: ['Full Name', 'Email Address', 'Phone Number', 'Salary', 'SSN (partial)'],
+      retentionPeriod: '7 years',
+      notificationRequired: true,
+      gdprArticle33: true,
+      lawEnforcementNotified: false,
+    },
+  },
+  {
+    id: 'RPT-2026-0040',
+    incidentId: 'INC-2026-0040',
+    title: 'Incident Report: SQL Injection Attack on Customer Portal API',
+    generatedAt: '2026-06-29T16:00:00Z',
+    severity: 'High',
+    status: 'Final',
+    analyst: 'Carol Kim',
+    reviewedBy: 'Alice Chen',
+    executiveSummary: 'SQL injection vulnerability exploited in customer portal API allowing exfiltration of 45,000 customer records. Vulnerability patched within 4 hours of detection.',
+    timeline: [
+      { time: '2026-06-29T13:45:00Z', event: 'API scanning detected by WAF', severity: 'medium' },
+      { time: '2026-06-29T14:10:00Z', event: 'SQL injection attempt blocked initially', severity: 'high' },
+      { time: '2026-06-29T14:15:00Z', event: 'Database schema enumeration successful', severity: 'high' },
+      { time: '2026-06-29T14:22:00Z', event: '45,000 records exfiltrated', severity: 'critical' },
+      { time: '2026-06-29T14:30:00Z', event: 'AI-SOC alert generated', severity: 'info' },
+      { time: '2026-06-29T16:00:00Z', event: 'Patch deployed - vulnerability remediated', severity: 'info' },
+    ],
+    affectedAssets: [
+      { asset: 'Customer Portal API', impact: 'SQL injection', severity: 'Critical' },
+      { asset: 'Customer Database', impact: '45,000 records exfiltrated', severity: 'Critical' },
+    ],
+    recommendations: ['Implement parameterized queries', 'Enable WAF SQL injection rules', 'Conduct full DAST scan'],
+    lessonsLearned: ['SAST scanning in CI/CD would have caught this', 'WAF rules need tuning for evasion techniques'],
+    iocList: [
+      { type: 'IP', value: '103.24.77.88', description: 'Attack source' },
+      { type: 'UserAgent', value: 'sqlmap/1.7.8', description: 'SQLMap automated tool' },
+    ],
+    dataBreachDetails: {
+      recordsAffected: 45000,
+      dataTypes: ['Email', 'Name', 'Address', 'Purchase History'],
+      notificationRequired: true,
+      gdprArticle33: true,
+    },
+    technicalDetails: { cvssScore: 7.5 },
+  },
+];
+
+export const reportStats = {
+  totalReports: mockReports.length,
+  thisMonth: 2,
+  pendingReview: 0,
+  withDataBreach: 2,
+  avgGenerationTime: '12 minutes',
+};
